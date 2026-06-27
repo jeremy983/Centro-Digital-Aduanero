@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Expedientes</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle">🌙</button>
+
+<header>
+   <div class="container header-inner">
+    <h1>Registro de Expedientes</h1>
+        <nav>
+            <ul>
+                <li><a href="Centro Digital Aduanero.html">Inicio</a></li>
+                <li><a href="Registro de Expedientes.html">Expedientes</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="AdminPanel.html">Panel Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <form id="formulario">
+        <h2 style="margin-top:0;margin-bottom:12px;color:#0f1724;text-align:center;">Registrar Nuevo Expediente</h2>
+        
+        <label for="numero">Número de expediente</label>
+        <input type="text" id="numero" placeholder="Ej: EXP-2024-001" required>
+
+        <label for="cliente">Nombre del cliente</label>
+        <input type="text" id="cliente" placeholder="Nombre completo del cliente" required>
+
+        <label for="tipo">Tipo de operación</label>
+        <select id="tipo" required>
+            <option value="">Selecciona un tipo</option>
+            <option value="importacion">Importación</option>
+            <option value="exportacion">Exportación</option>
+        </select>
+
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" />
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" placeholder="Información adicional (opcional)" rows="3"></textarea>
+
+        <label for="archivo">Adjuntar (opcional)</label>
+        <input type="file" id="archivo" />
+
+        <button type="submit">Guardar Expediente</button>
+    </form>
+
+    <div id="messageArea" style="max-width:700px;margin:12px auto 0;">
+        <!-- Mensajes de éxito/error aparecerán aquí -->
+    </div>
+
+    <h2 style="margin-top:30px;margin-bottom:18px;color:#0f1724;font-size:1.5rem;">Expedientes Registrados</h2>
+
+    <div style="overflow-x:auto;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,36,0.06);">
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Cliente</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaExpedientes">
+                <!-- Los expedientes se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="jsapp.js"></script>
+
+</body>
+</html>

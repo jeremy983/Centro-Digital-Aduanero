@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel de Administración - Expedientes</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle">🌙</button>
+
+<header>
+   <div class="container header-inner">
+    <h1 style="font-size:1.125rem;">Panel de Administración</h1>
+        <nav>
+            <ul>
+                <li><a href="Centro Digital Aduanero.html">Inicio</a></li>
+                <li><a href="Registro de Expedientes.html">Expedientes</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="AdminPanel.html">Panel Admin</a></li>
+            </ul>
+        </nav>
+        <!-- Botón discreto de acceso admin -->
+        <button id="adminToggle" class="admin-toggle" title="Acceso administrador">🔒</button>
+    </div>
+</header>
+
+<main class="container">
+    <!-- Se muestra únicamente un mensaje discreto y la tabla; el login se hace por modal -->
+    <section style="margin-bottom:24px;">
+        <p style="color:var(--muted);font-size:0.95rem;margin:10px 0 18px 0;">Área de administración (acceso seguro y discreto).</p>
+        <div id="adminPanel" class="admin-panel" style="display:none;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
+                        <p style="margin:0;">Modo administrador activo</p>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <button id="showDocsBtn" class="secondary" style="margin-right:8px;">Documentación</button>
+                            <button onclick="logoutAdmin()" class="btn-logout">Cerrar sesión</button>
+                        </div>
+                    </div>
+
+                    <!-- Panel de documentación (solo visible cuando se despliega) -->
+                    <div id="adminDocs" style="margin-top:12px;display:none;width:100%;">
+                        <h4 style="margin:6px 0 10px 0;font-size:1rem;color:#0f1724;">Gestión de Documentación (PDF)</h4>
+                        <form id="docForm" class="doc-upload" style="max-width:680px;">
+                            <label for="docTitle">Título</label>
+                            <input id="docTitle" placeholder="Título del documento" required />
+
+                            <label for="docDesc">Descripción</label>
+                            <input id="docDesc" placeholder="Breve descripción (opcional)" />
+
+                            <label for="docTags">Etiquetas (separadas por comas)</label>
+                            <input id="docTags" placeholder="p. ej. contratos,aduana,cliente123" />
+
+                            <label for="docFile">Archivo PDF</label>
+                            <input type="file" id="docFile" accept="application/pdf" required />
+
+                            <div style="display:flex;gap:8px;">
+                                <button type="submit">Subir documento</button>
+                                <button type="button" id="docClear" class="secondary">Limpiar</button>
+                            </div>
+                        </form>
+
+                        <div style="margin-top:12px;max-width:800px;">
+                            <input id="docSearch" placeholder="Buscar por título o etiqueta" style="width:60%;padding:8px;border-radius:8px;border:1px solid #e6e9ee;" />
+                            <select id="docSort" style="margin-left:8px;padding:8px;border-radius:8px;border:1px solid #e6e9ee;">
+                                <option value="new">Más reciente</option>
+                                <option value="name">Nombre A-Z</option>
+                            </select>
+                        </div>
+
+                        <div id="docList" class="doc-list" style="margin-top:12px;max-width:900px;"></div>
+                    </div>
+                </div>
+    </section>
+
+    <h2 style="margin-top:10px;margin-bottom:16px;color:#0f1724;font-size:1.5rem;">Expedientes Registrados</h2>
+
+    <div style="overflow-x:auto;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,36,0.06);">
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Cliente</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaExpedientes">
+                <!-- Los expedientes se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- Modal de acceso admin (discreto) -->
+<div id="adminModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+        <h3 id="adminModalTitle">Acceso de Administrador</h3>
+        <p style="color:var(--muted);font-size:0.95rem;margin-top:6px;margin-bottom:12px;">Introduce tu contraseña para acceder a las funciones administrativas.</p>
+        <input type="password" id="modalAdminPassword" placeholder="Contraseña" />
+        <div style="display:flex;gap:8px;margin-top:12px;">
+            <button id="modalAdminLogin" class="">Acceder</button>
+            <button id="modalAdminCancel" class="secondary">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script src="jsapp.js"></script>
+
+</body>
+</html>
